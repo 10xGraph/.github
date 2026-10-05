@@ -1,0 +1,60 @@
+name: "💡 Feature Request"
+description: "Propose a new primitive, checkpointer backend, or ecosystem integration for 10xGraph"
+title: "[Feature]: "
+labels: ["enhancement", "proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an idea to make 10xGraph even better!
+        Please describe the problem you are solving, the proposed API or architecture, and any alternatives considered.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem & Motivation
+      description: Is your feature request related to a problem or limitation?
+      placeholder: "I'm always frustrated when trying to serialize non-JSON state objects..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution / API Design
+      description: Describe how you would like this feature to work from a developer's perspective.
+      placeholder: |
+        ```python
+        # Example API usage:
+        from 10xgraph import StateGraph, custom_serializer
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: A clear and concise description of any alternative solutions or workarounds you've evaluated.
+      placeholder: "I tried using custom Pydantic validators, but..."
+
+  - type: dropdown
+    id: target-repo
+    attributes:
+      label: Target Component / Repository
+      options:
+        - "10xgraph (Python Core Engine & Runtime)"
+        - "10xgraph-docs (Documentation & Landing Page)"
+        - "10xgraph-cli (CLI Developer Tooling)"
+        - "10xgraph-client (TypeScript / React SDK)"
+        - "Infrastructure & Checkpointers"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Willingness to Contribute
+      options:
+        - label: "I am willing to submit a pull request for this feature."
+          required: false

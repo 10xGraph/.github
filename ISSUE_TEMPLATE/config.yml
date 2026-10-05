@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Official Documentation
+    url: https://docs.10xgraph.com
+    about: Read the official guides, quickstart tutorials, and API reference.
+  - name: 💬 GitHub Discussions
+    url: https://github.com/orgs/10xGraph/discussions
+    about: Ask architectural questions, brainstorm features, and share ideas.
+  - name: 🛡️ Security Vulnerability Reporting
+    url: https://github.com/10xGraph/.github/blob/main/SECURITY.md
+    about: Report sensitive vulnerabilities privately without opening a public issue.
