@@ -1,86 +1,46 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/10xGraph/.github/main/profile/assets/10xgraph-logo-3d.png">
-  <img alt="10xGraph Logo" src="https://raw.githubusercontent.com/10xGraph/.github/main/profile/assets/10xgraph-logo-3d.png" width="460">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/10xGraph/.github/main/profile/assets/10xgraph-logo-dark.svg">
+  <img alt="10xGraph" src="https://raw.githubusercontent.com/10xGraph/.github/main/profile/assets/10xgraph-logo.svg" width="360">
 </picture>
 
-<h3>State-Graph Engine for Autonomous AI Agents</h3>
+### Write the Python agent. 10xGraph builds the production server around it.
 
-<p align="center">
-  Compile typed Python state graphs into self-hosted, replay-safe production servers.<br />
-  Durable Redis checkpoints, zero double tool executions, per-tool RBAC, and real-time SSE streaming.
-</p>
+10xGraph by 10xScale: graph engineering for production AI agents.
 
-<p align="center">
-  <a href="https://pypi.org/project/10xgraph"><img src="https://img.shields.io/pypi/v/10xgraph.svg?color=005BE6&labelColor=0f172a&logo=pypi&logoColor=white" alt="PyPI Version"></a>
-  <a href="https://pypi.org/project/10xgraph"><img src="https://img.shields.io/pypi/pyversions/10xgraph.svg?color=005BE6&labelColor=0f172a&logo=python&logoColor=white" alt="Python Versions"></a>
-  <a href="https://github.com/10xGraph/.github/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?color=005BE6&labelColor=0f172a" alt="MIT License"></a>
-  <a href="https://docs.10xgraph.com"><img src="https://img.shields.io/badge/Docs-docs.10xgraph.com-005BE6?labelColor=0f172a&logo=googledocs&logoColor=white" alt="Documentation"></a>
-  <a href="https://10xgraph.com"><img src="https://img.shields.io/badge/Website-10xgraph.com-005BE6?labelColor=0f172a" alt="Website"></a>
-</p>
+[Website](https://10xgraph.com) · [Docs](https://10xgraph.com/docs) · [Quickstart](https://10xgraph.com/docs/get-started/first-agent) · [Changelog](https://10xgraph.com/changelog)
 
-<p align="center">
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-why-10xgraph">Why 10xGraph</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-benchmarks">Benchmarks</a> •
-  <a href="#-organization-repositories">Repositories</a> •
-  <a href="#-contributing">Contributing</a>
-</p>
-
----
+[![PyPI 10xgraph](https://img.shields.io/pypi/v/10xgraph?label=10xgraph)](https://pypi.org/project/10xgraph/)
+[![PyPI 10xgraph-api](https://img.shields.io/pypi/v/10xgraph-api?label=10xgraph-api)](https://pypi.org/project/10xgraph-api/)
+[![npm 10xgraph-client](https://img.shields.io/npm/v/10xgraph-client?label=10xgraph-client)](https://www.npmjs.com/package/10xgraph-client)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/10xGraph/10xGraph/blob/main/LICENSE)
 
 </div>
 
-## ⚡ Highlights & Superpowers
+10xGraph is an open-source Python framework for multi-agent AI systems. Other frameworks give you the graph. 10xGraph gives you the graph and the production server around it, under the MIT license. Formerly Agentflow.
 
-- **🛡️ Replay-Safe Tool Ledger**: When an agent worker process crashes or times out, 10xGraph resumes from the exact state snapshot. Committed tool calls (e.g. `execute_payment()`) are intercepted and **skipped** instead of double-executed.
-- **⚡ Two-Tier State Storage**: Sub-millisecond prompt context from **Redis hot memory cache** (`<0.8ms`) paired with **PostgreSQL cold storage** for auditable telemetry and compliance.
-- **🔐 Per-Tool RBAC & Guardrails**: Annotate tools with granular permission scopes (`@tool(permissions=["billing:write"])`). Unprivileged invocations are blocked before the model ever runs them.
-- **🚀 Production Server Included**: A single call to `.to_production_server()` compiles your Python graph into an OpenAPI-documented **FastAPI** microservice with JWT auth, owner-only threads, and Docker/k8s specs.
-- **🌊 Native SSE & WebSocket Streaming**: Zero-lag event streams for token chunks, tool inputs, and node state transitions.
-- **🤝 Multi-Agent Swarms**: Compose autonomous agent clusters with typed Pydantic state contracts and deterministic router $\rightarrow$ specialist handoffs.
+### What you get
 
----
+- **The production server, in the box.** `10xgraph-api` serves your compiled graph over REST, SSE, WebSocket and realtime audio, with JWT or custom auth, scoped authorization on every endpoint, owner-only threads and rate limiting, and writes your Docker Compose and Kubernetes files. No paid tier.
+- **Correct under failure.** A tool that already ran is not run again after a crash or retry: no double charge, no duplicate email. State writes are versioned, and node and tool timeouts stop a hung tool from holding a worker.
+- **Built to scale.** Active threads are cached in Redis, durable history lives in PostgreSQL, and events stream to Kafka, Redis, RabbitMQ or OpenTelemetry.
+- **One stack, backend to frontend.** A typed TypeScript client, and remote tools that run in the user's browser.
+- **You own it.** Self-hosted, any model (OpenAI, Google Gemini, Anthropic), no LangChain dependency.
 
-## 📊 Architectural Benchmarks
+10xGraph is pre-1.0: pin your versions and read the changelog when you upgrade.
 
-| Feature | 10xGraph | LangGraph | CrewAI |
-|---|---|---|---|
-| **License** | **MIT (100% Free & Open Source)** | MIT (Server is Closed Cloud) | MIT (Enterprise Cloud) |
-| **Production Server** | **Built-in (FastAPI + JWT + RBAC)** | Requires LangSmith Managed Cloud | Separate Enterprise Server |
-| **Tool Crash Protection** | **Native Replay-Safe Ledger** | Manual custom implementation | Basic session replay |
-| **External Dependencies** | **Zero (No LangChain required)** | Requires `langchain-core` | Heavy ecosystem dependencies |
-| **Memory Architecture** | **Redis Hot (<0.8ms) + Postgres** | Manual store wiring | Custom Chroma / Vector store |
-| **Deployment Specs** | **Auto Docker & Kubernetes specs** | Cloud Deployment only | Manual containerization |
+### Packages
 
----
-
-## 📦 Organization Repositories
-
-| Repository | Description | Status |
+| Package | Install | Repository |
 |---|---|---|
-| **[10xGraph/10xgraph-docs](https://github.com/10xGraph/10xgraph-docs)** | Monorepo containing the landing page (`10xgraph.com`) and complete documentation (`docs.10xgraph.com`). | ![Build](https://img.shields.io/badge/Astro%207-Passing-005BE6) |
-| **[10xGraph/10xgraph](https://github.com/10xGraph/10xgraph)** | Core Python state-graph engine, checkpointer, and server compiler. | ![Python](https://img.shields.io/badge/Python-3.10%2B-005BE6) |
-| **[10xGraph/10xgraph-cli](https://github.com/10xGraph/10xgraph-cli)** | CLI for scaffolding agent graphs, testing checkpoints, and managing deployments. | ![CLI](https://img.shields.io/badge/CLI-v0.9.2-005BE6) |
-| **[10xGraph/10xgraph-client](https://github.com/10xGraph/10xgraph-client)** | TypeScript/JavaScript SDK with SSE streaming hooks for Next.js and React. | ![TypeScript](https://img.shields.io/badge/TypeScript-SDK-005BE6) |
-| **[10xGraph/.github](https://github.com/10xGraph/.github)** | Organization profile, community health files, issue templates, and governance. | ![Profile](https://img.shields.io/badge/Org-Profile-005BE6) |
+| Core engine | `pip install 10xgraph` | [10xGraph/10xGraph](https://github.com/10xGraph/10xGraph) |
+| Production server and CLI | `pip install 10xgraph-api` | [10xGraph/10xgraph-api](https://github.com/10xGraph/10xgraph-api) |
+| TypeScript client | `npm install 10xgraph-client` | [10xGraph/10xgraph-client](https://github.com/10xGraph/10xgraph-client) |
+| Website and docs | [10xgraph.com](https://10xgraph.com) | [10xGraph/10xgraph-docs](https://github.com/10xGraph/10xgraph-docs) |
 
----
+### Get involved
 
-## 🤝 Contributing
+Your first pull request can be small: a typed module, an example, a fixed doc. Start with the [contributing guide](https://github.com/10xGraph/10xGraph#contributing), meet the people who build 10xGraph at [10xgraph.com/maintainers](https://10xgraph.com/maintainers), and ask questions in [Discussions](https://github.com/10xGraph/10xGraph/discussions). Report security issues privately through the Security tab of the affected repository.
 
-We welcome contributions of all kinds! Please review our guidelines before submitting a pull request:
-
-- [Contributing Guide](https://github.com/10xGraph/.github/blob/main/CONTRIBUTING.md)
-- [Code of Conduct](https://github.com/10xGraph/.github/blob/main/CODE_OF_CONDUCT.md)
-- [Security Policy](https://github.com/10xGraph/.github/blob/main/SECURITY.md)
-- [Support Guidelines](https://github.com/10xGraph/.github/blob/main/SUPPORT.md)
-
----
-
-## 📄 License
-
-10xGraph is free and open-source software licensed under the [MIT License](https://github.com/10xGraph/.github/blob/main/LICENSE).  
-*Formerly published as Agentflow.*
+<sub>MIT licensed. Built and run in production by [10xScale](https://10xscale.ai).</sub>
